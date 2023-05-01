@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title></title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+<script defer src="runtime.bundle.js"></script><script defer src="index.bundle.js"></script><script defer src="fetch.bundle.js"></script></head>
+
+<body class="has-navbar-fixed-top">
+  <nav class="navbar is-fixed-top has-shadow" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://instagram.com/nu8th">
+        <img id="logo" src="">
+      </a>
+    </div>
+  </nav>
+  <section class="section">
+    <div class="container">
+      <div class="field has-addons">
+        <div class="control">
+          <input class="input" type="text" placeholder="Game Name">
+        </div>
+        <div class="control">
+          <a class="button is-primary" id="search">
+            Search
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <div class="columns" id="results">
+
+      </div>
+    </div>
+  </section>
+  <script>
+    (function () {
+      var cors_api_host = 'cors-anywhere.herokuapp.com';
+      var cors_api_url = 'https://' + cors_api_host + '/';
+      var slice = [].slice;
+      var origin = window.location.protocol + '//' + window.location.host;
+      var open = XMLHttpRequest.prototype.open;
+      XMLHttpRequest.prototype.open = function () {
+        var args = slice.call(arguments);
+        var targetOrigin = /^https?:\/\/([^\/]+)/i.exec(args[1]);
+        if (targetOrigin && targetOrigin[0].toLowerCase() !== origin &&
+          targetOrigin[1] !== cors_api_host) {
+          args[1] = cors_api_url + args[1];
+        }
+        return open.apply(this, args);
+      };
+    })();
+  </script>
+</body>
+
+</html>
